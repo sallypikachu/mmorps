@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock, Paper, Scissors</title>
+  <link rel="stylesheet" type="text/css" href="<%="style.css"%>"/>
+</head>
+
+<body>
+  <h1>Rock, Paper, Scissors</h1>
+<% unless @weapon.nil? %>
+<p>Player chose <%= @weapon %></p>
+<p>CPU chose <%= session[:cpu_weapon] %></p>
+<% end %>
+
+
+<p>Player Score: <%= session[:player].score %></p>
+<p>Computer Score: <%= session[:player].cpu_score %></p>
+
+<% if session[:player].score < 2 && session[:player].cpu_score < 2 %>
+
+<form action="/new" method="post">
+  <label for="weapon">Choose Your Weapon:</label>
+  <br>
+  <input type="radio" name="weapon" value="rock"  id="rock"checked>Rock
+  <br>
+  <input type="radio" name="weapon" value="paper" id="paper">Paper
+  <br>
+  <input type="radio" name="weapon" value="scissor" id="scissor">Scissor
+  <br>
+  <input type="submit" value="Submit">
+</form>
+<br>
+<% else %>
+  <%if session[:player].score >= 2%>
+    You win!!!!!!
+  <%else%>
+    You lose!!!!! =(
+  <%end%>
+  <a href="/reset">Reset User Info</a>
+<% end %>
+
+</body>
+</html>
